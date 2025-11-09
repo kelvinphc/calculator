@@ -1,0 +1,61 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+
+#calculator-frame {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 15px;
+    gap: 18px;
+    padding: 18px;
+    width: 452px;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.container {
+    display: flex;
+    gap: 18px;
+}
+
+#display {
+    border: 1px solid black;
+    height: 120px;
+    width: 416px;
+}
+
+.number, .operator, #decimal {
+    height: 60px;
+    width: 90px;
+}
+
+#clear, #delete {
+    height: 60px;
+    width: 199px;
+}
+
+#container-2 {
+    flex-wrap: wrap;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+}
+
+button {
+    font-size: 18px;
+}
