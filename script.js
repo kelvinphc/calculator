@@ -1,6 +1,7 @@
 const numbers = document.querySelectorAll(".number");
 const display = document.getElementById("display");
 const operators = document.querySelectorAll(".operator");
+const clear = document.getElementById("clear");
 
 let firstNumber = "";
 let currentOperator = "";
@@ -9,22 +10,18 @@ let previousOperator = "";
 
 function add(a, b) {
     firstNumber = a + b;
-    display.textContent = firstNumber;
 };
 
 function subtract(a, b) {
     firstNumber = a - b;
-    display.textContent = firstNumber;
 };
 
 function multiply(a, b) {
     firstNumber = a * b;
-    display.textContent = firstNumber;
 };
 
 function divide(a, b) {
     firstNumber = a / b;
-    display.textContent = firstNumber;
 };
 
 function operate(firstNumber, operator, secondNumber) {
@@ -62,9 +59,18 @@ operators.forEach((operator) => {
         currentOperator = operator.id;
         if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
+            display.textContent = firstNumber;
             secondNumber = "";
         } else {
             secondNumber = "";
         };
     });
+});
+
+clear.addEventListener("click", () => {
+    firstNumber = "";
+    currentOperator = "";
+    secondNumber = "";
+    previousOperator = "";
+    display.textContent = "";
 });
