@@ -58,7 +58,9 @@ operators.forEach((operator) => {
     operator.addEventListener("click", () => {
         previousOperator = currentOperator;
         currentOperator = operator.id;
-        if (secondNumber != "") {
+        if (firstNumber == "" && currentOperator == "equal") {
+            currentOperator = "";
+        } else if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
             display.textContent = firstNumber;
             secondNumber = "";
