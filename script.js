@@ -2,6 +2,7 @@ const numbers = document.querySelectorAll(".number");
 const display = document.getElementById("display");
 const operators = document.querySelectorAll(".operator");
 const clear = document.getElementById("clear");
+const deleteButton = document.getElementById("delete");
 
 let firstNumber = "";
 let currentOperator = "";
@@ -73,4 +74,15 @@ clear.addEventListener("click", () => {
     secondNumber = "";
     previousOperator = "";
     display.textContent = "";
+});
+
+deleteButton.addEventListener("click", () => {
+    if (secondNumber != "") {
+        secondNumber = secondNumber.slice(0, (secondNumber.length - 1));
+        display.textContent = secondNumber;
+    } else {
+        firstNumber = firstNumber.toString();
+        firstNumber = firstNumber.slice(0, (firstNumber.length - 1));
+        display.textContent = firstNumber;
+    };
 });
