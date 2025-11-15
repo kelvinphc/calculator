@@ -1,3 +1,23 @@
+function add(a, b) {
+    firstNumber = a + b;
+    display.textContent = firstNumber;
+};
+
+function subtract(a, b) {
+    firstNumber = a - b;
+    display.textContent = firstNumber;
+};
+
+function multiply(a, b) {
+    firstNumber = a * b;
+    display.textContent = firstNumber;
+};
+
+function divide(a, b) {
+    firstNumber = a / b;
+    display.textContent = firstNumber;
+};
+
 const numbers = document.querySelectorAll(".number");
 const display = document.getElementById("display");
 const operators = document.querySelectorAll(".operator");
@@ -18,23 +38,7 @@ numbers.forEach((number) => {
     });
 });
 
-function add(a, b) {
-    return a + b;
-};
-
-function subtract(a, b) {
-    return a - b;
-};
-
-function multiply(a, b) {
-    return a * b;
-};
-
-function divide(a, b) {
-    return a / b;
-};
-
-function operate() {
+function operate(firstNumber, selectedOperator, secondNumber) {
     switch(selectedOperator) {
         case "add":
             add(Number(firstNumber), Number(secondNumber));
@@ -55,4 +59,8 @@ operators.forEach((operator) => {
     operator.addEventListener("click", () => {
         selectedOperator = operator.id;
     });
+});
+
+document.addEventListener("keypress", () => {
+    operate(firstNumber, selectedOperator, secondNumber);
 });
