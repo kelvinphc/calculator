@@ -37,8 +37,12 @@ function operate(firstNumber, operator, secondNumber) {
             multiply(Number(firstNumber), Number(secondNumber));
             break;
         case "divide":
-            divide(Number(firstNumber), Number(secondNumber));
-            break;
+            if (secondNumber == "0") {
+                alert("You can't divide by 0!");
+            } else {
+                divide(Number(firstNumber), Number(secondNumber));
+                break;
+            };
     };
 };
 
