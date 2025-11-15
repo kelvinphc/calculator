@@ -8,8 +8,13 @@ let secondNumber = "";
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-        firstNumber += number.textContent;
-        display.textContent = firstNumber;
+        if (selectedOperator == "") {
+            firstNumber += number.textContent;
+            display.textContent = firstNumber;
+        } else {
+            secondNumber += number.textContent;
+            display.textContent = secondNumber;
+        };
     });
 });
 
@@ -32,16 +37,16 @@ function divide(a, b) {
 function operate() {
     switch(selectedOperator) {
         case "add":
-            add(firstNumber, secondNumber);
+            add(Number(firstNumber), Number(secondNumber));
             break;
         case "subtract":
-            subtract(firstNumber, secondNumber);
+            subtract(Number(firstNumber), Number(secondNumber));
             break;
         case "multiply":
-            multiply(firstNumber, secondNumber);
+            multiply(Number(firstNumber), Number(secondNumber));
             break;
         case "divide":
-            divide(firstNumber, secondNumber);
+            divide(Number(firstNumber), Number(secondNumber));
             break;
     };
 };
