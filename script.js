@@ -1,5 +1,6 @@
 const numbers = document.querySelectorAll(".number");
 const display = document.getElementById("display");
+const operators = document.querySelectorAll(".operator");
 
 let firstNumber = "";
 let selectedOperator = "";
@@ -30,10 +31,10 @@ function divide(a, b) {
 
 function operate() {
     switch(selectedOperator) {
-        case "plus":
+        case "add":
             add(firstNumber, secondNumber);
             break;
-        case "minus":
+        case "subtract":
             subtract(firstNumber, secondNumber);
             break;
         case "multiply":
@@ -45,3 +46,8 @@ function operate() {
     };
 };
 
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        selectedOperator = operator.id;
+    });
+});
