@@ -46,9 +46,22 @@ function operate(firstNumber, operator, secondNumber) {
     };
 };
 
+function reset() {
+    firstNumber = "";
+    currentOperator = "";
+    secondNumber = "";
+    previousOperator = "";
+    display.textContent = "";
+};
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
+            firstNumber += number.textContent;
+            display.textContent = firstNumber;
+        } else if (currentOperator == "equal") {
+            reset();
+            currentOperator = "";
             firstNumber += number.textContent;
             display.textContent = firstNumber;
         } else {
@@ -75,11 +88,7 @@ operators.forEach((operator) => {
 });
 
 clear.addEventListener("click", () => {
-    firstNumber = "";
-    currentOperator = "";
-    secondNumber = "";
-    previousOperator = "";
-    display.textContent = "";
+    reset();
 });
 
 deleteButton.addEventListener("click", () => {
