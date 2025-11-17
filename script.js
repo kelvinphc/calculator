@@ -3,6 +3,7 @@ const display = document.getElementById("display");
 const operators = document.querySelectorAll(".operator");
 const clear = document.getElementById("clear");
 const deleteButton = document.getElementById("delete");
+const decimal = document.getElementById("decimal");
 
 let firstNumber = "";
 let currentOperator = "";
@@ -85,7 +86,6 @@ numbers.forEach((number) => {
             display.textContent = firstNumber;
         } else if (currentOperator == "equal") {
             reset();
-            currentOperator = "";
             firstNumber += number.textContent;
             noZeroesInFront();
             display.textContent = firstNumber;
@@ -111,6 +111,28 @@ operators.forEach((operator) => {
             secondNumber = "";
         };
     });
+});
+
+decimal.addEventListener("click", () => {
+    if (currentOperator == "") {
+        if (firstNumber.includes(".") == false) {
+            firstNumber += decimal.textContent;
+            display.textContent = firstNumber;
+        } else {
+            return;
+        };
+    } else if (currentOperator == "equal") {
+        reset();
+        firstNumber += decimal.textContent;
+        display.textContent = firstNumber;
+    } else {
+        if (secondNumber.includes(".") == false) {
+            secondNumber += decimal.textContent;
+            display.textContent = secondNumber;
+        } else {
+            return;
+        };
+    };
 });
 
 clear.addEventListener("click", () => {
