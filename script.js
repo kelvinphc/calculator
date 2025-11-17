@@ -54,18 +54,44 @@ function reset() {
     display.textContent = "";
 };
 
+function noZeroesInFront() {
+    if (firstNumber == "00") {firstNumber = "0"};
+    if (firstNumber == "01") {firstNumber = "1"};
+    if (firstNumber == "02") {firstNumber = "2"};
+    if (firstNumber == "03") {firstNumber = "3"};
+    if (firstNumber == "04") {firstNumber = "4"};
+    if (firstNumber == "05") {firstNumber = "5"};
+    if (firstNumber == "06") {firstNumber = "6"};
+    if (firstNumber == "07") {firstNumber = "7"};
+    if (firstNumber == "08") {firstNumber = "8"};
+    if (firstNumber == "09") {firstNumber = "9"};
+    if (secondNumber == "00") {secondNumber = "0"};
+    if (secondNumber == "01") {secondNumber = "1"};
+    if (secondNumber == "02") {secondNumber = "2"};
+    if (secondNumber == "03") {secondNumber = "3"};
+    if (secondNumber == "04") {secondNumber = "4"};
+    if (secondNumber == "05") {secondNumber = "5"};
+    if (secondNumber == "06") {secondNumber = "6"};
+    if (secondNumber == "07") {secondNumber = "7"};
+    if (secondNumber == "08") {secondNumber = "8"};
+    if (secondNumber == "09") {secondNumber = "9"};
+};
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
             firstNumber += number.textContent;
+            noZeroesInFront();
             display.textContent = firstNumber;
         } else if (currentOperator == "equal") {
             reset();
             currentOperator = "";
             firstNumber += number.textContent;
+            noZeroesInFront();
             display.textContent = firstNumber;
         } else {
             secondNumber += number.textContent;
+            noZeroesInFront();
             display.textContent = secondNumber;
         };
     });
