@@ -11,19 +11,19 @@ let secondNumber = "";
 let previousOperator = "";
 
 function add(a, b) {
-    firstNumber = a + b;
+    firstNumber = Number((a + b).toFixed(10));
 };
 
 function subtract(a, b) {
-    firstNumber = a - b;
+    firstNumber = Number((a - b).toFixed(10));
 };
 
 function multiply(a, b) {
-    firstNumber = a * b;
+    firstNumber = Number((a * b).toFixed(10));
 };
 
 function divide(a, b) {
-    firstNumber = a / b;
+    firstNumber = Number((a / b).toFixed(10));
 };
 
 function operate(firstNumber, operator, secondNumber) {
