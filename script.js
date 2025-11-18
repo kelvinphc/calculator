@@ -11,19 +11,19 @@ let secondNumber = "";
 let previousOperator = "";
 
 function add(a, b) {
-    firstNumber = Number((a + b).toFixed(10));
+    firstNumber = (a + b).toFixed(10);
 };
 
 function subtract(a, b) {
-    firstNumber = Number((a - b).toFixed(10));
+    firstNumber = (a - b).toFixed(10);
 };
 
 function multiply(a, b) {
-    firstNumber = Number((a * b).toFixed(10));
+    firstNumber = (a * b).toFixed(10);
 };
 
 function divide(a, b) {
-    firstNumber = Number((a / b).toFixed(10));
+    firstNumber = (a / b).toFixed(10);
 };
 
 function operate(firstNumber, operator, secondNumber) {
@@ -81,18 +81,26 @@ function noZeroesInFront() {
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
-            firstNumber += number.textContent;
-            noZeroesInFront();
-            display.textContent = firstNumber;
+            if (firstNumber.length == 22) {
+                return;
+            } else {
+                firstNumber += number.textContent;
+                noZeroesInFront();
+                display.textContent = firstNumber;
+            };
         } else if (currentOperator == "equal") {
             reset();
             firstNumber += number.textContent;
             noZeroesInFront();
             display.textContent = firstNumber;
         } else {
-            secondNumber += number.textContent;
-            noZeroesInFront();
-            display.textContent = secondNumber;
+            if (secondNumber.length == 22) {
+                return;
+            } else {
+                secondNumber += number.textContent;
+                noZeroesInFront();
+                display.textContent = secondNumber;
+            };
         };
     });
 });
