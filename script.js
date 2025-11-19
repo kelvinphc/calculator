@@ -11,19 +11,19 @@ let secondNumber = "";
 let previousOperator = "";
 
 function add(a, b) {
-    firstNumber = (a + b).toFixed(10);
+    firstNumber = (a + b);
 };
 
 function subtract(a, b) {
-    firstNumber = (a - b).toFixed(10);
+    firstNumber = (a - b);
 };
 
 function multiply(a, b) {
-    firstNumber = (a * b).toFixed(10);
+    firstNumber = (a * b);
 };
 
 function divide(a, b) {
-    firstNumber = (a / b).toFixed(10);
+    firstNumber = (a / b);
 };
 
 function operate(firstNumber, operator, secondNumber) {
@@ -78,6 +78,10 @@ function noZeroesInFront() {
     if (secondNumber == "09") {secondNumber = "9"};
 };
 
+function roundResult(number) {
+    return Math.round(number * 1e10) / 1e10;
+};
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
@@ -113,7 +117,7 @@ operators.forEach((operator) => {
             currentOperator = "";
         } else if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
-            display.textContent = firstNumber;
+            display.textContent = roundResult(firstNumber);
             secondNumber = "";
         } else {
             secondNumber = "";
