@@ -97,7 +97,7 @@ function backspace() {
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
-            if (firstNumber.length == 22) {
+            if (firstNumber.length > 21) {
                 return;
             } else {
                 firstNumber += number.textContent;
@@ -110,7 +110,7 @@ numbers.forEach((number) => {
             noZeroesInFront();
             display.textContent = firstNumber;
         } else {
-            if (secondNumber.length == 22) {
+            if (secondNumber.length > 21) {
                 return;
             } else {
                 secondNumber += number.textContent;
@@ -172,7 +172,7 @@ document.addEventListener("keydown", (event) => {
     key = event.key;
     if ("1234567890".includes(key)) {
         if (currentOperator == "") {
-            if (firstNumber.length == 22) {
+            if (firstNumber.length > 21) {
                 return;
             } else {
                 firstNumber += key;
@@ -185,7 +185,7 @@ document.addEventListener("keydown", (event) => {
             noZeroesInFront();
             display.textContent = firstNumber;
         } else {
-            if (secondNumber.length == 22) {
+            if (secondNumber.length > 21) {
                 return;
             } else {
                 secondNumber += key;
