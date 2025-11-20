@@ -9,6 +9,7 @@ let firstNumber = "";
 let currentOperator = "";
 let secondNumber = "";
 let previousOperator = "";
+let key = "";
 
 function add(a, b) {
     firstNumber = (a + b);
@@ -28,16 +29,16 @@ function divide(a, b) {
 
 function operate(firstNumber, operator, secondNumber) {
     switch(operator) {
-        case "add":
+        case "+":
             add(Number(firstNumber), Number(secondNumber));
             break;
-        case "subtract":
+        case "-":
             subtract(Number(firstNumber), Number(secondNumber));
             break;
-        case "multiply":
+        case "*":
             multiply(Number(firstNumber), Number(secondNumber));
             break;
-        case "divide":
+        case "/":
             if (secondNumber == "0") {
                 alert("You can't divide by 0!");
             } else {
@@ -82,6 +83,17 @@ function roundResult(number) {
     return Math.round(number * 1e10) / 1e10;
 };
 
+function backspace() {
+    if (secondNumber != "") {
+        secondNumber = secondNumber.slice(0, (secondNumber.length - 1));
+        display.textContent = secondNumber;
+    } else {
+        firstNumber = firstNumber.toString();
+        firstNumber = firstNumber.slice(0, (firstNumber.length - 1));
+        display.textContent = firstNumber;
+    };
+};
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (currentOperator == "") {
@@ -92,7 +104,7 @@ numbers.forEach((number) => {
                 noZeroesInFront();
                 display.textContent = firstNumber;
             };
-        } else if (currentOperator == "equal") {
+        } else if (currentOperator == "=") {
             reset();
             firstNumber += number.textContent;
             noZeroesInFront();
@@ -113,7 +125,7 @@ operators.forEach((operator) => {
     operator.addEventListener("click", () => {
         previousOperator = currentOperator;
         currentOperator = operator.id;
-        if (firstNumber == "" && currentOperator == "equal") {
+        if (firstNumber == "" && currentOperator == "=") {
             currentOperator = "";
         } else if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
@@ -133,7 +145,7 @@ decimal.addEventListener("click", () => {
         } else {
             return;
         };
-    } else if (currentOperator == "equal") {
+    } else if (currentOperator == "=") {
         reset();
         firstNumber += decimal.textContent;
         display.textContent = firstNumber;
@@ -152,12 +164,71 @@ clear.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-    if (secondNumber != "") {
-        secondNumber = secondNumber.slice(0, (secondNumber.length - 1));
-        display.textContent = secondNumber;
+    backspace();
+});
+
+document.addEventListener("keydown", (event) => {
+    key = event.key;
+    if ("1234567890".includes(key)) {
+        if (currentOperator == "") {
+            if (firstNumber.length == 22) {
+                return;
+            } else {
+                firstNumber += key;
+                noZeroesInFront();
+                display.textContent = firstNumber;
+            };
+        } else if ((currentOperator == "=") || (currentOperator == "Enter")) {
+            reset();
+            firstNumber += key;
+            noZeroesInFront();
+            display.textContent = firstNumber;
+        } else {
+            if (secondNumber.length == 22) {
+                return;
+            } else {
+                secondNumber += key;
+                noZeroesInFront();
+                display.textContent = secondNumber;
+            };
+        };
+    } else if ("+-*/=Enter".includes(key)) {
+        previousOperator = currentOperator;
+        currentOperator = key;
+        if (firstNumber == "" && ((currentOperator == "=") || (currentOperator == "Enter"))) {
+            currentOperator = "";
+        } else if (secondNumber != "") {
+            operate(firstNumber, previousOperator, secondNumber);
+            display.textContent = roundResult(firstNumber);
+            secondNumber = "";
+        } else {
+            secondNumber = "";
+        };
+    } else if (key == ".") {
+        if (currentOperator == "") {
+            if (firstNumber.includes(".") == false) {
+                firstNumber += key;
+                display.textContent = firstNumber;
+            } else {
+                return;
+            };
+        } else if ((currentOperator == "=") || (currentOperator == "Enter")) {
+            reset();
+            firstNumber += key;
+            display.textContent = firstNumber;
+        } else {
+            if (secondNumber.includes(".") == false) {
+                secondNumber += key;
+                display.textContent = secondNumber;
+            } else {
+                return;
+            };
+        };
+    } else if (key == "Escape") {
+        reset();
+    } else if (key == "Backspace") {
+        backspace();
     } else {
-        firstNumber = firstNumber.toString();
-        firstNumber = firstNumber.slice(0, (firstNumber.length - 1));
-        display.textContent = firstNumber;
+        return;
     };
 });
