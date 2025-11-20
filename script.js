@@ -129,7 +129,8 @@ operators.forEach((operator) => {
             currentOperator = "";
         } else if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
-            display.textContent = roundResult(firstNumber);
+            firstNumber = roundResult(firstNumber)
+            display.textContent = firstNumber;
             secondNumber = "";
         } else {
             secondNumber = "";
@@ -199,7 +200,8 @@ document.addEventListener("keydown", (event) => {
             currentOperator = "";
         } else if (secondNumber != "") {
             operate(firstNumber, previousOperator, secondNumber);
-            display.textContent = roundResult(firstNumber);
+            firstNumber = roundResult(firstNumber)
+            display.textContent = firstNumber;
             secondNumber = "";
         } else {
             secondNumber = "";
